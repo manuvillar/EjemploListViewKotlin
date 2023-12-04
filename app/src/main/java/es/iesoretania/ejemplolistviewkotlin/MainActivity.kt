@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
             Coche("X3", "BMW"),
             Coche("A4", "Audi"),
             Coche("GLC", "Mercedes"),
+            Coche("Prueba", "Extraña")
         )
 
         val miadaptador = MiAdaptadorCoches(this, R.layout.coche_item, miLista)

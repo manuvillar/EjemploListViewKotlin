@@ -27,7 +27,7 @@ class MiAdaptadorCoches(private val miContext: Context,
             "Mercedes" -> binding.imageViewMarca.setImageResource(R.drawable.mercedes_benz)
             "Audi" -> binding.imageViewMarca.setImageResource(R.drawable.audi_logo)
             "BMW" -> binding.imageViewMarca.setImageResource(R.drawable.bmw_logo)
-            else -> binding.imageViewMarca.setImageResource(R.drawable.mercedes_benz)
+            else -> binding.imageViewMarca.setImageResource(R.drawable.interrogacion)
         }
 
         return v
