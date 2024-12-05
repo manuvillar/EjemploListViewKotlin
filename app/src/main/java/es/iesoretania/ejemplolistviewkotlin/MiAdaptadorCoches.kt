@@ -13,23 +13,28 @@ class MiAdaptadorCoches(private val miContext: Context,
                         val resource: Int,
                         private val listacoches: List<Coche>)
     :ArrayAdapter<Coche>(miContext, resource, listacoches) {
-    private lateinit var binding: CocheItemBinding
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        binding = CocheItemBinding.inflate(LayoutInflater.from(miContext), parent, false)
-        val v = binding.root
-        val elementoActual: Coche = listacoches.get(position)
+        val binding = if (convertView == null) {
+            CocheItemBinding.inflate(LayoutInflater.from(context),
+                parent, false)
+        } else {
+            CocheItemBinding.bind(convertView)
+        }
+
+        val iconosMarca = mapOf(
+            "Mercedes" to R.drawable.mercedes_benz,
+            "BMW" to R.drawable.bmw_logo,
+            "Audi" to R.drawable.audi_logo
+        )
+        val elementoActual: Coche = listacoches[position]
 
         binding.textViewMarca.text = elementoActual.marca
         binding.textViewModelo.text = elementoActual.modelo
 
-        when (elementoActual.marca){
-            "Mercedes" -> binding.imageViewMarca.setImageResource(R.drawable.mercedes_benz)
-            "Audi" -> binding.imageViewMarca.setImageResource(R.drawable.audi_logo)
-            "BMW" -> binding.imageViewMarca.setImageResource(R.drawable.bmw_logo)
-            else -> binding.imageViewMarca.setImageResource(R.drawable.interrogacion)
-        }
+        binding.imageViewMarca.setImageResource(iconosMarca[elementoActual.marca] ?:
+                                                    R.drawable.interrogacion)
 
-        return v
+        return binding.root
     }
 }
